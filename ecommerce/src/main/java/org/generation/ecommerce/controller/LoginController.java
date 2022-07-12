@@ -10,6 +10,7 @@ import org.generation.ecommerce.model.Token;
 import org.generation.ecommerce.model.Usuario;
 import org.generation.ecommerce.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,6 +29,7 @@ public class LoginController {
 		this.usuarioService	= usuarioService;
 	}
 	
+	@PostMapping
 	public Token login(@RequestBody Usuario usuario) throws ServletException{
 		if(usuarioService.validateUsuario(usuario)) {
 			return new Token(generateToken(usuario.getUsername()));
